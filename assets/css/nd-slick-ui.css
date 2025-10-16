@@ -1,0 +1,219 @@
+/* === Slider-Basis === */
+.slider { position: relative; display: block; overflow: hidden; }
+.slider > .slide { width: 100%; flex-shrink: 0; }
+.slick-slide .slide { display: flex !important; flex-direction: column; }
+.slider img.slider-img, .slider .slide > img {
+  display: block; max-width: 100%; width: auto; height: auto; max-height: 80vh; object-fit: contain; margin: 0 auto;
+}
+.slider.slick-slider, .slick-dotted.slick-slider { margin-bottom: 0; }
+
+/* =================================================================== */
+/* Dots – Basis + Variablen (Standard: Strich-Variante)                */
+/* =================================================================== */
+.slick-ui{
+  /* Standard-Defaults (überschreibbar durch Presets/Varianten/Instanz) */
+  --dots-gap: 1.5rem;               /* Abstand zwischen Dots */
+  --dot-button-size: 1.5rem;      /* Klickfläche je Dot (w = h) */
+
+  /* Strich-Dots (Default-Form) */
+  --dot-size: 100%;
+  --dot-thickness: .2rem;
+  --dot-color: #CCC;
+  --dot-color-active: #000;
+}
+
+.slick-ui .slick-nav-dots { width: 100%; padding: 0; }
+.slick-ui .slick-nav-dots .slick-dots{
+  display:flex !important; justify-content:center; align-items:center;
+  gap: var(--dots-gap);
+  margin:0 !important; padding:0 !important; list-style:none; position:static !important;
+  left:auto !important; right:auto !important; transform:none !important;
+}
+.slick-ui .slick-nav-dots .slick-dots li{
+  width:auto !important; height:auto !important; margin:0 !important; padding:0;
+  display:flex !important; align-items:center; justify-content:center; line-height:1;
+}
+.slick-ui .slick-nav-dots .slick-dots li button{
+  display:flex; align-items:center; justify-content:center;
+  width: var(--dot-button-size); height: var(--dot-button-size);
+  padding:0; border:0; background:transparent; cursor:pointer; outline:none; line-height:0; position:relative;
+}
+
+/* =================================================================== */
+/* Presets – nur Abstand & Klickfläche                                 */
+/* =================================================================== */
+.slick-ui.dots-compact { --dots-gap:.1rem; --dot-button-size:1rem; }
+.slick-ui.dots-medium  { --dots-gap:1.5rem;  --dot-button-size:1.5rem; }
+.slick-ui.dots-wide   { --dots-gap:2rem;   --dot-button-size:3rem; }
+
+/* =================================================================== */
+/* Dot-Formen                                                          */
+/* =================================================================== */
+/* 1) Standard: Strich-Dots (wenn KEINE .dots-square/.dots-pipe gesetzt) */
+.slick-ui:not(.dots-square):not(.dots-pipe) .slick-nav-dots .slick-dots li button::before{
+  content:""; position: static !important; display:block;
+  width: var(--dot-size); height: var(--dot-thickness); background: var(--dot-color);
+  border-radius: calc(var(--dot-thickness) / 2);
+}
+.slick-ui:not(.dots-square):not(.dots-pipe) .slick-nav-dots .slick-dots li.slick-active button::before{ background: var(--dot-color-active) !important; }
+.slick-ui:not(.dots-square):not(.dots-pipe) .slick-nav-dots .slick-dots li button:hover::before,
+.slick-ui:not(.dots-square):not(.dots-pipe) .slick-nav-dots .slick-dots li button:focus-visible::before{ background: var(--dot-color-active); }
+
+/* 2) Quadratische Dots (nur Rahmen) */
+.slick-ui.dots-square{
+  --dot-square-size: 1rem; --dot-square-radius: .3rem;
+  --dot-border-width: .1rem;
+}
+.slick-ui.dots-square .slick-nav-dots .slick-dots li button::before{
+  content:""; position: static !important; display:block;
+  width: var(--dot-square-size); height: var(--dot-square-size);
+  background: transparent; border: var(--dot-border-width) solid var(--dot-color); border-radius: var(--dot-square-radius);
+}
+.slick-ui.dots-square .slick-nav-dots .slick-dots li.slick-active button::before{ border-color: var(--dot-color-active) !important; }
+.slick-ui.dots-square .slick-nav-dots .slick-dots li button:hover::before,
+.slick-ui.dots-square .slick-nav-dots .slick-dots li button:focus-visible::before{ border-color: var(--dot-color-active); }
+
+/* 3) Senkrecht-Strich (Pipe) – kompakt */
+.slick-ui.dots-pipe{
+  --dot-pipe-width: 2px; --dot-pipe-height: 1.3rem;
+  --dot-color: #555; --dot-color-active: var(--colora);
+}
+.slick-ui.dots-pipe .slick-nav-dots .slick-dots li button::before{
+  content:""; position: static !important; display:block;
+  width: var(--dot-pipe-width); height: var(--dot-pipe-height);
+  background: var(--dot-color); border-radius: calc(var(--dot-pipe-width) / 2);
+}
+.slick-ui.dots-pipe .slick-nav-dots .slick-dots li.slick-active button::before{ background: var(--dot-color-active) !important; }
+.slick-ui.dots-pipe .slick-nav-dots .slick-dots li button:hover::before,
+.slick-ui.dots-pipe .slick-nav-dots .slick-dots li button:focus-visible::before{ background: var(--dot-color-active); }
+
+/* =================================================================== */
+/* Counter & Toggle                                                    */
+/* =================================================================== */
+.slick-ui .slick-nav-counter{
+  font-family:"Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight:300; font-variant-numeric:tabular-nums; letter-spacing:.02em; text-align:center;
+}
+.slick-ui .slider-autoplay-toggle{
+  background:transparent; border:none; cursor:pointer; line-height:0; color:inherit;
+}
+.slick-ui .slider-autoplay-toggle:focus-visible{ outline:2px solid currentColor; outline-offset:2px; border-radius:6px; }
+.slick-ui .slider-autoplay-toggle .slider-toggle-icon svg{ width:1.7em; height:1.7em; display:inline-block; vertical-align:middle; }
+
+/* =================================================================== */
+/* Controls-Row: Prev | Dots | Next in einer Reihe                     */
+/* =================================================================== */
+.slick-ui .slick-controls-row{
+  display:grid;
+  grid-template-columns:auto 1fr auto; /* Prev | Dots | Next */
+  align-items:center;
+  column-gap:3rem;
+}
+
+/* Dots mittig */
+.slick-ui .slick-controls-row .slick-nav-dots{
+  grid-column:2; justify-self:center; width:auto;
+}
+.slick-ui .slick-controls-row .slick-nav-dots .slick-dots{
+  width:auto; justify-content:center;
+}
+
+/* Slick-Defaults (Font-Arrows) im UI abschalten */
+.slick-ui .slick-prev::before,
+.slick-ui .slick-next::before{
+  content:"" !important;
+  font-size:0 !important;
+  line-height:0 !important;
+  color:transparent !important;
+}
+
+/* Buttons (links/rechts der Dots) */
+.slick-ui .slick-controls-row .slick-prev,
+.slick-ui .slick-controls-row .slick-next{
+  grid-row:1;
+  width:3rem; height:3rem;
+  display:flex; align-items:center; justify-content:center;
+  border:none; background:transparent; padding:0; cursor:pointer;
+  color:var(--colorc); transition: color .2s ease;  /* Standard: schwarz */
+}
+.slick-ui .slick-controls-row .slick-prev{ grid-column:1; justify-self:end; }
+.slick-ui .slick-controls-row .slick-next{ grid-column:3; justify-self:start; }
+
+.slick-ui .slick-controls-row .slick-prev:hover,
+.slick-ui .slick-controls-row .slick-prev:focus-visible,
+.slick-ui .slick-controls-row .slick-next:hover,
+.slick-ui .slick-controls-row .slick-next:focus-visible{
+  color: var(--colora); /* Hover: colora */
+}
+
+.slick-ui .slick-controls-row .slick-prev.slick-disabled,
+.slick-ui .slick-controls-row .slick-next.slick-disabled{
+  opacity:.35; pointer-events:none;
+}
+
+/* =================================================================== */
+/* SVG-Masken – abgerundete Dreiecke                                   */
+/* =================================================================== */
+/* Rechts-Pfeil */
+.slick-ui .slick-controls-row .slick-next::after{
+  content:""; display:block; width:2.2rem; height:2.2rem; background: currentColor;
+  -webkit-mask: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">\
+<path fill="black" d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18a1 1 0 0 0 0-1.69L9.54 5.98A.998.998 0 0 0 8 6.82"/>\
+</svg>') center / contain no-repeat;
+          mask: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">\
+<path fill="black" d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18a1 1 0 0 0 0-1.69L9.54 5.98A.998.998 0 0 0 8 6.82"/>\
+</svg>') center / contain no-repeat;
+}
+
+/* Links-Pfeil (gespiegelt) */
+.slick-ui .slick-controls-row .slick-prev::after{
+  content:""; display:block; width:2.2rem; height:2.2rem; background: currentColor; transform: scaleX(-1);
+  -webkit-mask: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">\
+<path fill="black" d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18a1 1 0 0 0 0-1.69L9.54 5.98A.998.998 0 0 0 8 6.82"/>\
+</svg>') center / contain no-repeat;
+          mask: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">\
+<path fill="black" d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18a1 1 0 0 0 0-1.69L9.54 5.98A.998.998 0 0 0 8 6.82"/>\
+</svg>') center / contain no-repeat;
+}
+
+/* =================================================================== */
+/* Mobile-Override: < 768px → immer kompakte Pipes                     */
+/* =================================================================== */
+@media (max-width: 768px) {
+  /* 1) Gap & Buttongröße unabhängig von Presets klemmen */
+  .slick-ui.dots-wide .slick-nav-dots .slick-dots,
+  .slick-ui.dots-medium .slick-nav-dots .slick-dots,
+  .slick-ui.dots-compact .slick-nav-dots .slick-dots,
+  .slick-ui .slick-nav-dots .slick-dots {
+    gap: .25rem !important;
+  }
+
+  .slick-ui.dots-wide .slick-nav-dots .slick-dots li button,
+  .slick-ui.dots-medium .slick-nav-dots .slick-dots li button,
+  .slick-ui.dots-compact .slick-nav-dots .slick-dots li button,
+  .slick-ui .slick-nav-dots .slick-dots li button {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+  /* 2) Pipe-Form erzwingen (überschreibt Strich/Square mobil) */
+  .slick-ui .slick-nav-dots .slick-dots li button::before {
+    content: "" !important;
+    position: static !important;
+    display: block !important;
+    width: 2px !important;
+    height: 1rem !important;
+    background: var(--dot-color, #555) !important;
+    border: 0 !important;
+    border-radius: 1px !important;
+  }
+  .slick-ui .slick-nav-dots .slick-dots li.slick-active button::before,
+  .slick-ui .slick-nav-dots .slick-dots li button:hover::before,
+  .slick-ui .slick-nav-dots .slick-dots li button:focus-visible::before {
+    background: var(--dot-color-active, var(--colora)) !important;
+  }
+}
