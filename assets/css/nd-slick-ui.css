@@ -76,7 +76,6 @@
 /* 3) Senkrecht-Strich (Pipe) – kompakt */
 .slick-ui.dots-pipe{
   --dot-pipe-width: 2px; --dot-pipe-height: 1.3rem;
-  --dot-color: #555; --dot-color-active: var(--colora);
 }
 .slick-ui.dots-pipe .slick-nav-dots .slick-dots li button::before{
   content:""; position: static !important; display:block;
@@ -180,40 +179,3 @@
 </svg>') center / contain no-repeat;
 }
 
-/* =================================================================== */
-/* Mobile-Override: < 768px → immer kompakte Pipes                     */
-/* =================================================================== */
-@media (max-width: 768px) {
-  /* 1) Gap & Buttongröße unabhängig von Presets klemmen */
-  .slick-ui.dots-wide .slick-nav-dots .slick-dots,
-  .slick-ui.dots-medium .slick-nav-dots .slick-dots,
-  .slick-ui.dots-compact .slick-nav-dots .slick-dots,
-  .slick-ui .slick-nav-dots .slick-dots {
-    gap: .25rem !important;
-  }
-
-  .slick-ui.dots-wide .slick-nav-dots .slick-dots li button,
-  .slick-ui.dots-medium .slick-nav-dots .slick-dots li button,
-  .slick-ui.dots-compact .slick-nav-dots .slick-dots li button,
-  .slick-ui .slick-nav-dots .slick-dots li button {
-    width: 1rem !important;
-    height: 1rem !important;
-  }
-
-  /* 2) Pipe-Form erzwingen (überschreibt Strich/Square mobil) */
-  .slick-ui .slick-nav-dots .slick-dots li button::before {
-    content: "" !important;
-    position: static !important;
-    display: block !important;
-    width: 2px !important;
-    height: 1rem !important;
-    background: var(--dot-color, #555) !important;
-    border: 0 !important;
-    border-radius: 1px !important;
-  }
-  .slick-ui .slick-nav-dots .slick-dots li.slick-active button::before,
-  .slick-ui .slick-nav-dots .slick-dots li button:hover::before,
-  .slick-ui .slick-nav-dots .slick-dots li button:focus-visible::before {
-    background: var(--dot-color-active, var(--colora)) !important;
-  }
-}

@@ -90,6 +90,9 @@
         arrows:wantArrows,
         dots:!!$dotsWrap.length,
         appendDots: $dotsWrap.length ? $dotsWrap.get(0) : undefined,
+        customPaging: function(slider, i) {
+          return '<button type="button" aria-label="Gehe zu Folie ' + (i + 1) + '"></button>';
+        },
         prevArrow:'<button type="button" class="slick-prev" aria-label="Vorherige Folie"></button>',
         nextArrow:'<button type="button" class="slick-next" aria-label="Nächste Folie"></button>',
         appendArrows: $controlsRow.length ? $controlsRow.get(0) : ($arrowsWrap.length ? $arrowsWrap.get(0) : undefined),
