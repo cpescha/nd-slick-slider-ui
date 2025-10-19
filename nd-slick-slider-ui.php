@@ -2,7 +2,7 @@
 /**
  * Plugin Name: ND Slick Slider UI
  * Description: Lightweight Init-Layer für Slick + optionale UI-Shortcodes. Lädt NUR lokale Vendor-Dateien (kein CDN).
- * Version: 1.1.7.8
+ * Version: 1.1.8
  *
  * Author: netzwerk.design
  * Author URI: https://netzwerk.design
@@ -15,7 +15,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-define( 'ND_SLICK_UI_VERSION', '1.1.7.8' );
+define( 'ND_SLICK_UI_VERSION', '1.1.8' );
 define( 'ND_SLICK_UI_FILE', __FILE__ );
 define( 'ND_SLICK_UI_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ND_SLICK_UI_URL', plugin_dir_url( __FILE__ ) );
